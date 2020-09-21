@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:go_plus/pages/splash.dart';
+import 'file:///C:/Projetos_Flutter/go_plus/lib/pages/splash/splash.dart';
 import 'package:go_plus/routs.dart';
 import 'package:go_plus/theme.dart';
 
