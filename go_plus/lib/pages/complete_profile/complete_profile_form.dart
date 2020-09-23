@@ -4,7 +4,9 @@ import 'package:go_plus/components/default_button.dart';
 import 'package:go_plus/components/form_error.dart';
 import 'package:go_plus/constants.dart';
 import 'package:go_plus/pages/login/login.dart';
+import 'package:go_plus/pages/register_success/register_success.dart';
 import 'package:go_plus/size_config.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class CompleteProfileForm extends StatefulWidget {
   @override
@@ -18,6 +20,7 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
   String phoneNumber;
   String city;
   final List<String> errors = [];
+  var maskFormatter = new MaskTextInputFormatter(mask: '(##) #####-####', filter: { "#": RegExp(r'[0-9]') });
 
   void addError({String error}) {
     if (!errors.contains(error)) {
@@ -54,7 +57,7 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
             text: "Continuar",
             press: (){
               if(_formKey.currentState.validate()){
-                Navigator.pushNamed(context, Login.routeName);
+                Navigator.pushNamed(context, RegisterSuccess.routeName);
               }
             },
           ),
@@ -107,6 +110,7 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
   phoneNumberFormField() {
     return TextFormField(
       keyboardType: TextInputType.phone,
+      inputFormatters: [maskFormatter],
       onSaved: (newValue) {
         phoneNumber = newValue;
       },
