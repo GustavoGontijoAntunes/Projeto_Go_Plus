@@ -4,6 +4,7 @@ import 'package:go_plus/pages/forgot_password/forgot_password.dart';
 import 'package:go_plus/pages/home/home.dart';
 import 'package:go_plus/pages/login/login.dart';
 import 'package:go_plus/pages/register/register.dart';
+import 'package:go_plus/pages/register_success/register_success.dart';
 import 'package:go_plus/pages/splash/splash.dart';
 
 final Map<String, WidgetBuilder> routes = {
@@ -13,4 +14,5 @@ final Map<String, WidgetBuilder> routes = {
   ForgotPassword.routeName: (context) => ForgotPassword(),
   Home.routeName: (context) => Home(),
   CompleteProfile.routeName: (context) => CompleteProfile(),
+  RegisterSuccess.routeName: (context) => RegisterSuccess(),
 };
