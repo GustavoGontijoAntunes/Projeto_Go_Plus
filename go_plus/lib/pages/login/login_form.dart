@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:go_plus/components/alert.dart';
 import 'package:go_plus/components/custom_suffix_icon.dart';
 import 'package:go_plus/components/default_button.dart';
 import 'package:go_plus/components/form_error.dart';
 import 'package:go_plus/constants.dart';
 import 'package:go_plus/pages/forgot_password/forgot_password.dart';
 import 'package:go_plus/pages/home/home.dart';
+import 'package:go_plus/services/login_api.dart';
 import 'package:go_plus/size_config.dart';
 
 class LoginForm extends StatefulWidget {
@@ -49,7 +51,7 @@ class _LoginFormState extends State<LoginForm> {
             children: [
               Checkbox(
                 value: remember,
-                activeColor: primaryColor,
+                activeColor: kPrimaryColor,
                 onChanged: (value){
                   setState(() {
                     remember = value;
@@ -75,18 +77,27 @@ class _LoginFormState extends State<LoginForm> {
           SizedBox(height: getProportionateScreenHeight(20)),
           DefaultButton(
             text: "Entrar",
-            press: () {
-              if (_formKey.currentState.validate()) {
-                _formKey.currentState.save();
-                //Se tudo estiver OK, ele entrará no APP - tela Home
-                Navigator.pushNamed(context, Home.routeName);
-              }
-            },
+            press: () => _onClickButton(context),
           ),
         ],
       ),
     );
   }
+
+  Future _onClickButton(BuildContext context) async {
+    if (_formKey.currentState.validate()) {
+      _formKey.currentState.save();
+
+      var usuario = await LoginApi.login(email, password);
+
+      //Se tudo estiver OK, ele entrará no APP - tela Home
+      if(usuario != null) {
+        Navigator.pushNamed(context, Home.routeName);
+      }else{
+        alert(context, "Login Inválido");
+      }
+    }
+ }
 
   TextFormField emailFormField() {
     return TextFormField(
@@ -96,9 +107,9 @@ class _LoginFormState extends State<LoginForm> {
       },
       onChanged: (value){
         if (value.isNotEmpty) {
-          removeError(error: emailNullError);
+          removeError(error: kEmailNullError);
         }
-        else if(emailValidatorRegExp.hasMatch(value)){
+        else if(kEmailValidatorRegExp.hasMatch(value)){
           removeError(error: email);
         }
 
@@ -106,11 +117,11 @@ class _LoginFormState extends State<LoginForm> {
       },
       validator: (value) {
         if (value.isEmpty) {
-          addError(error: emailNullError);
+          addError(error: kEmailNullError);
           return "";
         }
-        else if(!emailValidatorRegExp.hasMatch(value)){
-          addError(error: invalidEmailError);
+        else if(!kEmailValidatorRegExp.hasMatch(value)){
+          addError(error: kInvalidEmailError);
           return "";
         }
 
@@ -133,10 +144,10 @@ class _LoginFormState extends State<LoginForm> {
       },
       onChanged: (value){
         if (value.isNotEmpty) {
-          removeError(error: passwordNullError);
+          removeError(error: kPasswordNullError);
         }
         else if(value.length >= 8){
-          removeError(error: shortPasswordError);
+          removeError(error: kShortPasswordError);
           return "";
         }
 
@@ -144,11 +155,11 @@ class _LoginFormState extends State<LoginForm> {
       },
       validator: (value) {
         if (value.isEmpty) {
-          addError(error: passwordNullError);
+          addError(error: kPasswordNullError);
           return "";
         }
         else if(value.length < 8){
-          addError(error: shortPasswordError);
+          addError(error: kShortPasswordError);
           return "";
         }
 

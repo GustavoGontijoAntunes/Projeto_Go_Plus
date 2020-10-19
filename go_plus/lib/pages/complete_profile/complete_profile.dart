@@ -28,7 +28,7 @@ class CompleteProfile extends StatelessWidget {
               SizedBox(height: SizeConfig.screenHeight * 0.00), // 0%
               Text(
                 "Complete seu perfil",
-                style: headinStyle,
+                style: kHeadingStyle,
               ),
               Text(
                 "Complete as informações ou continue \ncom uma rede social",

@@ -68,19 +68,19 @@ class _RegisterFormState extends State<RegisterForm> {
       },
       onChanged: (value) {
         if (value.isNotEmpty) {
-          removeError(error: emailNullError);
-        } else if (emailValidatorRegExp.hasMatch(value)) {
-          removeError(error: invalidEmailError);
+          removeError(error: kEmailNullError);
+        } else if (kEmailValidatorRegExp.hasMatch(value)) {
+          removeError(error: kInvalidEmailError);
         }
 
         return null;
       },
       validator: (value) {
         if (value.isEmpty) {
-          addError(error: emailNullError);
+          addError(error: kEmailNullError);
           return "";
-        } else if (!emailValidatorRegExp.hasMatch(value)) {
-          addError(error: invalidEmailError);
+        } else if (!kEmailValidatorRegExp.hasMatch(value)) {
+          addError(error: kInvalidEmailError);
           return "";
         }
 
@@ -103,10 +103,10 @@ class _RegisterFormState extends State<RegisterForm> {
       },
       onChanged: (value) {
         if (value.isNotEmpty) {
-          removeError(error: passwordNullError);
+          removeError(error: kPasswordNullError);
         }
         else if (value.length >= 8) {
-          removeError(error: shortPasswordError);
+          removeError(error: kShortPasswordError);
           return "";
         }
 
@@ -116,11 +116,11 @@ class _RegisterFormState extends State<RegisterForm> {
       },
       validator: (value) {
         if (value.isEmpty) {
-          addError(error: passwordNullError);
+          addError(error: kPasswordNullError);
           return "";
         }
         else if (value.length < 8) {
-          addError(error: shortPasswordError);
+          addError(error: kShortPasswordError);
           return "";
         }
 
@@ -143,7 +143,7 @@ class _RegisterFormState extends State<RegisterForm> {
       },
       onChanged: (value) {
         if (password == confirm_password) {
-          removeError(error: matchPasswordError);
+          removeError(error: kMatchPasswordError);
         }
         return null;
       },
@@ -152,7 +152,7 @@ class _RegisterFormState extends State<RegisterForm> {
           return "";
         }
         else if (password != value) {
-          addError(error: matchPasswordError);
+          addError(error: kMatchPasswordError);
           return "";
         }
 

@@ -29,7 +29,7 @@ class Register extends StatelessWidget {
               SizedBox(height: SizeConfig.screenHeight * 0.01),
               Text(
                 "Registrar Conta",
-                style: headinStyle,
+                style: kHeadingStyle,
               ),
               Text(
                 "Complete as informações ou continue \ncom uma rede social",
