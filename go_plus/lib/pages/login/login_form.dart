@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:go_plus/components/alert.dart';
 import 'package:go_plus/components/custom_suffix_icon.dart';
 import 'package:go_plus/components/default_button.dart';
@@ -84,23 +85,11 @@ class _LoginFormState extends State<LoginForm> {
     );
   }
 
-  Future _onClickButton(BuildContext context) async {
-    if (_formKey.currentState.validate()) {
-      _formKey.currentState.save();
-
-      var usuario = await LoginApi.login(email, password);
-
-      //Se tudo estiver OK, ele entrará no APP - tela Home
-      if(usuario != null) {
-        Navigator.pushNamed(context, Home.routeName);
-      }else{
-        alert(context, "Login Inválido");
-      }
-    }
- }
-
   TextFormField emailFormField() {
     return TextFormField(
+      inputFormatters: [
+        LengthLimitingTextInputFormatter(40),
+      ],
       keyboardType: TextInputType.emailAddress,
       onSaved: (newValue) {
         email = newValue;
@@ -138,6 +127,9 @@ class _LoginFormState extends State<LoginForm> {
 
   TextFormField passwordFormField() {
     return TextFormField(
+      inputFormatters: [
+        LengthLimitingTextInputFormatter(30),
+      ],
       obscureText: true,
       onSaved: (newValue){
         password = newValue;
@@ -172,5 +164,20 @@ class _LoginFormState extends State<LoginForm> {
         suffixIcon: CustomSuffixIcon(svgIcon: "assets/icons/Lock.svg"),
       ),
     );
+  }
+
+  Future _onClickButton(BuildContext context) async {
+    if (_formKey.currentState.validate()) {
+      _formKey.currentState.save();
+
+      var usuario = await LoginApi.login(email, password);
+
+      //Se tudo estiver OK, ele entrará no APP - tela Home
+      if(usuario != null) {
+        Navigator.pushNamed(context, Home.routeName);
+      }else{
+        alert(context, "Login Inválido");
+      }
+    }
   }
 }

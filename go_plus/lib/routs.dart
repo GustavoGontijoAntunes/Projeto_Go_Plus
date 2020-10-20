@@ -13,6 +13,6 @@ final Map<String, WidgetBuilder> routes = {
   Register.routeName: (context) => Register(),
   ForgotPassword.routeName: (context) => ForgotPassword(),
   Home.routeName: (context) => Home(),
-  CompleteProfile.routeName: (context) => CompleteProfile(),
+  //CompleteProfile.routeName: (context) => CompleteProfile(),
   RegisterSuccess.routeName: (context) => RegisterSuccess(),
 };

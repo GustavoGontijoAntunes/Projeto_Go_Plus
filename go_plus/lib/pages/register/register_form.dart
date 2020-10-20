@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:go_plus/components/custom_suffix_icon.dart';
 import 'package:go_plus/components/default_button.dart';
 import 'package:go_plus/components/form_error.dart';
@@ -51,7 +52,8 @@ class _RegisterFormState extends State<RegisterForm> {
             text: "Continuar",
             press: (){
               if(_formKey.currentState.validate()){
-                Navigator.pushNamed(context, CompleteProfile.routeName);
+                //Navigator.pushNamed(context, CompleteProfile.routeName);
+                Navigator.push(context, MaterialPageRoute(builder: (context) => CompleteProfile(email, password)));
               }
             },
           ),
@@ -62,6 +64,9 @@ class _RegisterFormState extends State<RegisterForm> {
 
   TextFormField emailFormField() {
     return TextFormField(
+      inputFormatters: [
+        LengthLimitingTextInputFormatter(40),
+      ],
       keyboardType: TextInputType.emailAddress,
       onSaved: (newValue) {
         email = newValue;
@@ -84,6 +89,8 @@ class _RegisterFormState extends State<RegisterForm> {
           return "";
         }
 
+        email = value;
+
         return null;
       },
       decoration: InputDecoration(
@@ -97,6 +104,9 @@ class _RegisterFormState extends State<RegisterForm> {
 
   TextFormField passwordFormField() {
     return TextFormField(
+      inputFormatters: [
+        LengthLimitingTextInputFormatter(30),
+      ],
       obscureText: true,
       onSaved: (newValue) {
         password = newValue;
@@ -137,6 +147,9 @@ class _RegisterFormState extends State<RegisterForm> {
 
   TextFormField confirmPasswordFormField() {
     return TextFormField(
+      inputFormatters: [
+        LengthLimitingTextInputFormatter(30),
+      ],
       obscureText: true,
       onSaved: (newValue) {
         confirm_password = newValue;
