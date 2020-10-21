@@ -79,6 +79,7 @@ class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
                 print("E-mail enviado!");
               }
             },
+            showProgress: false,
           ),
           SizedBox(height: SizeConfig.screenHeight * 0.1),
           NoAccount(),

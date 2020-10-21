@@ -44,6 +44,7 @@ class RegisterSuccess extends StatelessWidget {
             press: (){
               Navigator.pushNamed(context, Login.routeName);
             },
+            showProgress: false,
           ),
         ),
         Spacer(),

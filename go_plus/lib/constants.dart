@@ -36,6 +36,7 @@ const String kMatchPasswordError = "As senhas não são iguais";
 const String kNameNullError = "Por favor, digite o seu nome";
 const String kPhoneNumberNullError = "Por favor, digite o seu número de telefone";
 const String kCityNullError = "Por favor, digite o nome da sua cidade";
+const String kInvalidLoginError = "Login inválido";
 
 const kDefaultPadding = 20.0;
 final kDefaultShadow = BoxShadow(

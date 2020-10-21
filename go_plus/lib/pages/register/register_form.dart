@@ -56,6 +56,7 @@ class _RegisterFormState extends State<RegisterForm> {
                 Navigator.push(context, MaterialPageRoute(builder: (context) => CompleteProfile(email, password)));
               }
             },
+            showProgress: false,
           ),
         ],
       ),

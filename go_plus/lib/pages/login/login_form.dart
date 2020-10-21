@@ -21,6 +21,7 @@ class _LoginFormState extends State<LoginForm> {
   String password;
   bool remember = false;
   final List<String> errors = [];
+  bool _showProgress = false;
 
   void addError({String error}){
     if(!errors.contains(error)){
@@ -79,6 +80,7 @@ class _LoginFormState extends State<LoginForm> {
           DefaultButton(
             text: "Entrar",
             press: () => _onClickButton(context),
+            showProgress: _showProgress,
           ),
         ],
       ),
@@ -170,14 +172,22 @@ class _LoginFormState extends State<LoginForm> {
     if (_formKey.currentState.validate()) {
       _formKey.currentState.save();
 
+      setState(() {
+        _showProgress = true;
+      });
+
       var usuario = await LoginApi.login(email, password);
 
       //Se tudo estiver OK, ele entrará no APP - tela Home
       if(usuario != null) {
         Navigator.pushNamed(context, Home.routeName);
       }else{
-        alert(context, "Login Inválido");
+        alert(context, kInvalidLoginError);
       }
+
+      setState(() {
+        _showProgress = false;
+      });
     }
   }
 }

@@ -7,7 +7,7 @@ import 'package:go_plus/components/form_error.dart';
 import 'package:go_plus/constants.dart';
 import 'package:go_plus/pages/register_success/register_success.dart';
 import 'package:go_plus/services/register_api.dart';
-import 'package:go_plus/services/usuario.dart';
+import 'file:///C:/Projetos_Flutter/go_plus/lib/entities/usuario.dart';
 import 'package:go_plus/size_config.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
@@ -26,6 +26,7 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
   Usuario user = new Usuario();
   final List<String> errors = [];
   var maskFormatter = new MaskTextInputFormatter(mask: '(##) #####-####', filter: { "#": RegExp(r'[0-9]') });
+  bool _showProgress = false;
 
   _CompleteProfileFormState(String email, String password){
     user.email = email;
@@ -64,8 +65,9 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
           FormError(errors: errors),
           SizedBox(height: getProportionateScreenHeight(40)),
           DefaultButton(
-            text: "Continuar",
+            text: "Criar conta",
             press: () => _onClickButton(context),
+            showProgress: _showProgress,
           ),
         ],
       ),
@@ -183,6 +185,10 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
     if (_formKey.currentState.validate()) {
       _formKey.currentState.save();
 
+      setState(() {
+        _showProgress = true;
+      });
+
       var registro = await RegisterApi.save(user);
       print("registro: $registro");
 
@@ -191,6 +197,10 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
       } else{
         alert(context, "Cadastro não pôde ser realizado!");
       }
+
+      setState(() {
+        _showProgress = false;
+      });
     }
   }
 }

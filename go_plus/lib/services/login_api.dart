@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:go_plus/services/usuario.dart';
+import 'file:///C:/Projetos_Flutter/go_plus/lib/entities/usuario.dart';
 import 'package:http/http.dart' as http;
 
 class LoginApi {
