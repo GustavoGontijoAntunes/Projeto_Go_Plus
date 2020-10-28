@@ -7,7 +7,7 @@ import 'package:go_plus/components/form_error.dart';
 import 'package:go_plus/constants.dart';
 import 'package:go_plus/pages/register_success/register_success.dart';
 import 'package:go_plus/services/register_api.dart';
-import 'file:///C:/Projetos_Flutter/go_plus/lib/entities/usuario.dart';
+import 'file:///C:/Projetos_Flutter/go_plus/lib/entities/user.dart';
 import 'package:go_plus/size_config.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
@@ -23,7 +23,7 @@ class CompleteProfileForm extends StatefulWidget {
 
 class _CompleteProfileFormState extends State<CompleteProfileForm> {
   final _formKey = GlobalKey<FormState>();
-  Usuario user = new Usuario();
+  User user = new User();
   final List<String> errors = [];
   var maskFormatter = new MaskTextInputFormatter(mask: '(##) #####-####', filter: { "#": RegExp(r'[0-9]') });
   bool _showProgress = false;
@@ -123,7 +123,6 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
 
   phoneNumberFormField() {
     return TextFormField(
-
       keyboardType: TextInputType.phone,
       inputFormatters: [maskFormatter],
       onSaved: (newValue) {

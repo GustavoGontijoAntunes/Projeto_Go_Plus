@@ -16,6 +16,8 @@ const kPrimaryGradientColor = LinearGradient(
 //text
 const kTextColor = Color.fromRGBO(117, 117, 117, 1);
 const kTextAppBarColor = Color.fromRGBO(139, 139, 139, 1);
+const kWordsColor = Color(0xFFC2C2B5);
+const kIconsColor = Color(0xFF8492A2);
 
 //head
 final kHeadingStyle = TextStyle(

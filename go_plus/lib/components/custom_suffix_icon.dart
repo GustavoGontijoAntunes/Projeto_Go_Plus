@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_plus/constants.dart';
 import 'package:go_plus/size_config.dart';
 
 class CustomSuffixIcon extends StatelessWidget {
@@ -22,6 +23,7 @@ class CustomSuffixIcon extends StatelessWidget {
       child: SvgPicture.asset(
         svgIcon,
         height: getProportionateScreenWidth(18),
+        color: kWordsColor,
       ),
     );
   }

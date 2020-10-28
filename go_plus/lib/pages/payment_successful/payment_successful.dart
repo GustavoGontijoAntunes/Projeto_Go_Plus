@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:go_plus/components/default_button.dart';
 import 'package:go_plus/constants.dart';
+import 'package:go_plus/pages/home/home.dart';
 import 'package:go_plus/pages/login/login.dart';
 import 'package:go_plus/size_config.dart';
 
-class RegisterSuccess extends StatefulWidget {
-  static String routeName = "/register_success";
+class PaymentSuccessful extends StatefulWidget {
+  static String routeName = "/payment_successful";
 
   @override
-  _RegisterSuccessState createState() => _RegisterSuccessState();
+  _PaymentSuccessfulState createState() => _PaymentSuccessfulState();
 }
 
-class _RegisterSuccessState extends State<RegisterSuccess> {
+class _PaymentSuccessfulState extends State<PaymentSuccessful> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -37,7 +38,7 @@ class _RegisterSuccessState extends State<RegisterSuccess> {
         ),
         SizedBox(height: SizeConfig.screenHeight * 0.08),
         Text(
-          "Conta Criada com Sucesso!",
+          "Compra Efetuada com Sucesso!",
           style: TextStyle(
             fontSize: getProportionateScreenWidth(30),
             fontWeight: FontWeight.bold,
@@ -49,9 +50,9 @@ class _RegisterSuccessState extends State<RegisterSuccess> {
         SizedBox(
           width: SizeConfig.screenWidth * 0.6,
           child: DefaultButton(
-            text: "Voltar para o Login",
+            text: "Voltar para o início",
             press: (){
-              Navigator.pushNamed(context, Login.routeName);
+              Navigator.pushNamed(context, Home.routeName);
             },
             showProgress: false,
           ),
@@ -61,13 +62,13 @@ class _RegisterSuccessState extends State<RegisterSuccess> {
     );
   }
 
-  Future<bool> _onWillPop() async{
+  Future<bool> _onWillPop() async{/*
     return showDialog<bool>(
         context: context,
         barrierDismissible: false,
         builder: (context) => AlertDialog(
-          title: Text("Sair"),
-          content: Text("Você deseja voltar para a tela de login?"),
+          title: Text("Voltar"),
+          content: Text("Você deseja voltar para a tela de início?"),
           actions: [
             RaisedButton(
               child: Text("Sim",
@@ -76,7 +77,7 @@ class _RegisterSuccessState extends State<RegisterSuccess> {
               ),
               color: kPrimaryColor,
               onPressed: (){
-                Navigator.pushNamed(context, Login.routeName);
+                Navigator.pushNamed(context, Home.routeName);
               },
             ),
             RaisedButton(
@@ -91,6 +92,6 @@ class _RegisterSuccessState extends State<RegisterSuccess> {
             )
           ],
         )
-    );
+    );*/
   }
 }

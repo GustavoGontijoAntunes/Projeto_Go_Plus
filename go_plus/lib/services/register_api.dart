@@ -1,11 +1,11 @@
 import 'dart:convert';
 
-import 'file:///C:/Projetos_Flutter/go_plus/lib/entities/usuario.dart';
+import 'file:///C:/Projetos_Flutter/go_plus/lib/entities/user.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class RegisterApi {
-  static Future<bool> save(Usuario u) async {
+  static Future<bool> save(User u) async {
     Map<String, String> headers = {
       "Content-Type": "application/json"
     };
