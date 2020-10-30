@@ -4,6 +4,7 @@ import 'package:go_plus/components/alert.dart';
 import 'package:go_plus/components/custom_suffix_icon.dart';
 import 'package:go_plus/components/default_button.dart';
 import 'package:go_plus/components/form_error.dart';
+import 'package:go_plus/components/prefs.dart';
 import 'package:go_plus/constants.dart';
 import 'package:go_plus/pages/forgot_password/forgot_password.dart';
 import 'package:go_plus/pages/home/home.dart';
@@ -79,7 +80,9 @@ class _LoginFormState extends State<LoginForm> {
           SizedBox(height: getProportionateScreenHeight(20)),
           DefaultButton(
             text: "Entrar",
-            press: () => _onClickButton(context),
+            press: () => {
+              _onClickButton(context),
+            },
             showProgress: _showProgress,
           ),
         ],

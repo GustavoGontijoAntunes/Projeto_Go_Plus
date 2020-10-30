@@ -5,10 +5,11 @@ import '../size_config.dart';
 
 class DefaultButton extends StatelessWidget {
   String text;
+  Color color;
   Function press;
   bool showProgress;
 
-  DefaultButton({this.text, this.press, this.showProgress = false});
+  DefaultButton({this.text, this.press, this.showProgress = false, this.color = kPrimaryColor});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,7 @@ class DefaultButton extends StatelessWidget {
 
       child: FlatButton(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        color: kPrimaryColor,
+        color: color,
         onPressed: press,
         child: showProgress
           ? Center(

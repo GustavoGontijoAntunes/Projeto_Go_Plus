@@ -13,40 +13,44 @@ class EventCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Expanded(
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(8),
-            child: Image.asset(
-              event.imageSrc,
-              height: 140,
-              width: 170,
+    return GestureDetector(
+      onTap: press,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Expanded(
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(30),
+              child: Image.asset(
+                event.imageSrc,
+                height: 150,
+                width: 150,
+                fit: BoxFit.fill,
+              ),
             ),
           ),
-        ),
-        Padding(
-          padding: EdgeInsets.symmetric(vertical: 5),
-          child: Text(
-            event.name.toUpperCase(),
-            style: TextStyle(
-                color: Colors.black,
-                fontSize: 13
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 5),
+            child: Text(
+              event.name.toUpperCase(),
+              style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 13
+              ),
             ),
           ),
-        ),
-        Padding(
-          padding: EdgeInsets.symmetric(vertical: 1),
-          child: Text(
-            "Data: ${formatDate(event.date, [dd, '/', mm, '/', yyyy])}",
-            style: TextStyle(
-                fontSize: 11,
-                height: 1
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 1),
+            child: Text(
+              "Data: ${formatDate(event.date, [dd, '/', mm, '/', yyyy])}",
+              style: TextStyle(
+                  fontSize: 11,
+                  height: 1
+              ),
             ),
-          ),
-        )
-      ],
+          )
+        ],
+      ),
     );
   }
 }

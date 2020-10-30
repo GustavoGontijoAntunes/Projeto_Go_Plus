@@ -1,22 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_plus/constants.dart';
+import 'package:go_plus/entities/user.dart';
 import 'package:go_plus/models/bottom_nav_bar.dart';
 import 'package:go_plus/pages/login/login.dart';
 import 'package:go_plus/pages/profile/info.dart';
 import 'package:go_plus/pages/profile/profile_menu_item.dart';
-import 'package:go_plus/services/profile_api.dart';
 import 'package:go_plus/size_config.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Profile extends StatefulWidget {
   static String routeName = "/profile";
 
+
   @override
   _ProfileState createState() => _ProfileState();
 }
 
 class _ProfileState extends State<Profile> {
+
+  Future<User> futureUser = User.getUser();
+  _ProfileState();
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +29,7 @@ class _ProfileState extends State<Profile> {
       onWillPop: _onWillPop,
       child: Scaffold(
         appBar: buildAppBar(),
-        body: _body(),
+        body: _body(futureUser),
         bottomNavigationBar: BottomNavBar(),
       ),
     );
@@ -59,14 +63,18 @@ class _ProfileState extends State<Profile> {
     );
   }
 
-  _body() {
+  _body(Future<User> futureUser) {
+    //Future<User> usuario = ProfileApi.getProfile("", 0);
+
     return SingleChildScrollView(
       child: Column(
         children: [
-          Info(
-            image: "assets/images/Profile.jpg",
-            name: "Gustavo Antunes",
-            email: "gustavo_antunes07@hotmail.com",
+          FutureBuilder<User>(
+            future: futureUser,
+            builder: (context, snapshot) {
+              User user = snapshot.data;
+              return user != null ? _infoUser(user) : Container();
+            },
           ),
           SizedBox(height: SizeConfig.defaultSize * 2),
           ProfileMenuItem(
@@ -129,26 +137,15 @@ class _ProfileState extends State<Profile> {
     );
   }
 
+  Info _infoUser(User user) {
+    return Info(
+      image: "assets/images/Profile.jpg",
+      name: user.firstName + " " + user.lastName,
+      email: user.email,
+    );
+  }
+
   Future<bool> _onWillPop() {
     //Esta função está em branco para que o botão "Voltar" fique desabilitado.
   }
-
-  Future _searchUser() async {
-
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    var token = prefs.get('token');
-    var id = prefs.get('id');
-
-    var usuario = await ProfileApi.profile(token, id);
-
-    //Se tudo estiver OK, ele entrará no APP - tela Home
-    if(usuario != null) {
-      print(usuario);
-    }else{
-      print("ERRO");
-    }
-
-    return usuario;
-  }
 }
-

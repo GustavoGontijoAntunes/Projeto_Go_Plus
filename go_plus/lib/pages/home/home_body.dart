@@ -6,6 +6,7 @@ import 'package:go_plus/components/custom_suffix_icon.dart';
 import 'package:go_plus/constants.dart';
 import 'package:go_plus/entities/event.dart';
 import 'package:go_plus/entities/event_categories.dart';
+import 'package:go_plus/pages/event_details/event_details.dart';
 import 'package:go_plus/pages/home/event_card.dart';
 import 'package:intl/intl.dart';
 
@@ -16,7 +17,6 @@ class HomeBody extends StatefulWidget {
 
 class _HomeBodyState extends State<HomeBody> {
   String wordSearch;
-  final dateFormat = new DateFormat('dd/MM/yyyy');
 
   @override
   Widget build(BuildContext context) {
@@ -40,6 +40,16 @@ class _HomeBodyState extends State<HomeBody> {
               itemBuilder: (context, index) =>
                 EventCard(
                   event: events[index],
+                  press: () => {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => EventDetails(
+                          event: events[index],
+                        ),
+                      )
+                    ),
+                  },
                 ),
             ),
           )
@@ -51,19 +61,19 @@ class _HomeBodyState extends State<HomeBody> {
 
   _searchFormField() {
     return Container(
-        margin: EdgeInsets.all(20),
-        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-        child: TextFormField(
-          keyboardType: TextInputType.text,
-          onChanged: (newValue) {
-            wordSearch = newValue;
-          },
-          decoration: InputDecoration(
-            hintText: "Pesquisar...",
-            floatingLabelBehavior: FloatingLabelBehavior.always,
-            suffixIcon: CustomSuffixIcon(svgIcon: "assets/icons/search.svg"),
-          ),
+      margin: EdgeInsets.only(top: 10, left: 20, right: 20),
+      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+      child: TextFormField(
+        keyboardType: TextInputType.text,
+        onChanged: (newValue) {
+          wordSearch = newValue;
+        },
+        decoration: InputDecoration(
+          hintText: "Pesquisar...",
+          floatingLabelBehavior: FloatingLabelBehavior.always,
+          suffixIcon: CustomSuffixIcon(svgIcon: "assets/icons/search.svg"),
         ),
-      );
+      ),
+    );
   }
 }

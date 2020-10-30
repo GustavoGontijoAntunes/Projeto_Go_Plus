@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:go_plus/pages/complete_profile/complete_profile.dart';
+import 'package:go_plus/pages/event_details/event_details.dart';
 import 'package:go_plus/pages/forgot_password/forgot_password.dart';
 import 'package:go_plus/pages/home/home.dart';
 import 'package:go_plus/pages/login/login.dart';
@@ -21,4 +22,5 @@ final Map<String, WidgetBuilder> routes = {
   PaymentSuccessful.routeName: (context) => PaymentSuccessful(),
   Profile.routeName: (context) => Profile(),
   Ticket.routeName: (context) => Ticket(),
+  EventDetails.routeName: (context) => EventDetails()
 };
