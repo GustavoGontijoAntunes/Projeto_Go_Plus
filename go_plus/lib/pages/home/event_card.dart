@@ -42,7 +42,7 @@ class EventCard extends StatelessWidget {
           Padding(
             padding: EdgeInsets.symmetric(vertical: 1),
             child: Text(
-              "Data: ${formatDate(event.date, [dd, '/', mm, '/', yyyy])}",
+              "Data: ${formatDate(event.date, [dd, '/', mm, '/', yyyy, ' - ', HH, ':', nn])}",
               style: TextStyle(
                   fontSize: 11,
                   height: 1

@@ -4,6 +4,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_plus/components/default_button.dart';
 import 'package:go_plus/constants.dart';
 import 'package:go_plus/entities/event.dart';
+import 'package:go_plus/pages/available_ticket/available_ticket.dart';
+import 'package:go_plus/pages/purchased_ticket/purchased_ticket.dart';
 import 'package:go_plus/size_config.dart';
 
 class EventDetails extends StatelessWidget {
@@ -28,14 +30,22 @@ class EventDetails extends StatelessWidget {
               color: Colors.red,
             ),
             onPressed: () {},
+          ),
+          IconButton(
+            icon: SvgPicture.asset(
+              "assets/icons/share.svg",
+              height: 25,
+              color: kPrimaryColor,
+            ),
+            onPressed: () {},
           )
         ],
       ),
-      body: _body(),
+      body: _body(context),
     );
   }
 
-  _body() {
+  _body(BuildContext context) {
     return SingleChildScrollView(
       child: Padding(
         padding: EdgeInsets.only(bottom: 0),
@@ -51,7 +61,7 @@ class EventDetails extends StatelessWidget {
             _dateEvent(),
             _localEvent(),
             _eventDescription(),
-            _buttonTicket(),
+            _buttonTicket(context),
           ],
         ),
       ),
@@ -89,7 +99,7 @@ class EventDetails extends StatelessWidget {
             ),
             SizedBox(width: 10),
             Text(
-              "${formatDate(event.date, [dd, '/', mm, '/', yyyy])}",
+              "${formatDate(event.date, [dd, '/', mm, '/', yyyy, ' - ', HH, ':', nn])}",
               style: TextStyle(
                   fontSize: 15,
               ),
@@ -153,14 +163,19 @@ class EventDetails extends StatelessWidget {
     );
   }
 
-  _buttonTicket() {
+  _buttonTicket(BuildContext context) {
     return Align(
       alignment: Alignment.bottomCenter,
       child: Padding(
         padding: EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 20),
         child: DefaultButton(
           text: "Ver Tickets",
-          press: () {},
+          press: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => AvailableTicket(eventName: event.name)),
+            );
+          },
           showProgress: false,
           color: kGreenColor,
         ),

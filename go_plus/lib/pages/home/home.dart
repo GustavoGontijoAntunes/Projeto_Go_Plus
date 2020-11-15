@@ -17,12 +17,6 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
 
-  /*
-  void initState() {
-    _searchUser();
-  }
-  */
-
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -64,22 +58,5 @@ class _HomeState extends State<Home> {
   Future<bool> _onWillPop() async{
     //Esta função está em branco para que o botão "Voltar" fique desabilitado.
   }
-
-  /*
-  Future _searchUser() async {
-
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    var token = prefs.get('token');
-    var id = prefs.get('id');
-
-    var usuario = await ProfileApi.profile(token, id);
-
-    if(usuario != null) {
-      print(usuario);
-    }else{
-      print("ERRO");
-    }
-  }
-  */
 }
 

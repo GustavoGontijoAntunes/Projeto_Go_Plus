@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_plus/pages/home/home.dart';
 import 'package:go_plus/pages/profile/profile.dart';
-import 'package:go_plus/pages/ticket/ticket.dart';
+import 'package:go_plus/pages/purchased_ticket/purchased_ticket.dart';
 
 class NavItem{
   final int id;
@@ -19,7 +19,7 @@ class NavItem{
 }
 
 class NavItems extends ChangeNotifier{
-  int selectedIndex = 1;
+  int selectedIndex = 0;
 
   void changeNavIndex({int index}){
     selectedIndex = index;
@@ -37,7 +37,7 @@ class NavItems extends ChangeNotifier{
     NavItem(
       id: 2,
       icon: "assets/icons/travel_ticket.svg",
-      destination: Ticket.routeName,
+      destination: PurchasedTicket.routeName,
     ),
     NavItem(
       id: 3,

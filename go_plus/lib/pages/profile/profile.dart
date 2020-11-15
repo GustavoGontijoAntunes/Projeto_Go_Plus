@@ -120,7 +120,7 @@ class _ProfileState extends State<Profile> {
                     RaisedButton(
                       child: Text("Não",
                         style: TextStyle(
-                            color: Colors.white),
+                          color: Colors.white),
                       ),
                       color: kPrimaryColor,
                       onPressed: (){

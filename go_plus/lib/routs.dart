@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
+import 'package:go_plus/pages/available_ticket/available_ticket.dart';
 import 'package:go_plus/pages/complete_profile/complete_profile.dart';
+import 'package:go_plus/pages/driver_information/driver_information.dart';
 import 'package:go_plus/pages/event_details/event_details.dart';
 import 'package:go_plus/pages/forgot_password/forgot_password.dart';
 import 'package:go_plus/pages/home/home.dart';
@@ -9,7 +11,8 @@ import 'package:go_plus/pages/profile/profile.dart';
 import 'package:go_plus/pages/register/register.dart';
 import 'package:go_plus/pages/register_success/register_success.dart';
 import 'package:go_plus/pages/splash/splash.dart';
-import 'package:go_plus/pages/ticket/ticket.dart';
+
+import 'pages/purchased_ticket/purchased_ticket.dart';
 
 final Map<String, WidgetBuilder> routes = {
   SplashScreen.routeName: (context) => SplashScreen(),
@@ -21,6 +24,8 @@ final Map<String, WidgetBuilder> routes = {
   RegisterSuccess.routeName: (context) => RegisterSuccess(),
   PaymentSuccessful.routeName: (context) => PaymentSuccessful(),
   Profile.routeName: (context) => Profile(),
-  Ticket.routeName: (context) => Ticket(),
-  EventDetails.routeName: (context) => EventDetails()
+  PurchasedTicket.routeName: (context) => PurchasedTicket(),
+  EventDetails.routeName: (context) => EventDetails(),
+  AvailableTicket.routeName: (context) => AvailableTicket(),
+  DriverInformation.routeName: (context) => DriverInformation(),
 };

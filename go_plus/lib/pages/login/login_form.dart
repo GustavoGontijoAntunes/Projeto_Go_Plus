@@ -183,7 +183,6 @@ class _LoginFormState extends State<LoginForm> {
 
       //Se tudo estiver OK, ele entrará no APP - tela Home
       if(usuario != null) {
-        Navigator.pushNamed(context, Home.routeName);
         Navigator.of(context).pushNamedAndRemoveUntil(Home.routeName, (Route<dynamic> route) => false);
       }else{
         alert(context, kInvalidLoginError);
