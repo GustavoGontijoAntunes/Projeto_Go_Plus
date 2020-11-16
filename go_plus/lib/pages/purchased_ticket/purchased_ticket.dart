@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_plus/models/bottom_nav_bar.dart';
+import 'package:go_plus/pages/purchased_ticket/purchased_ticket_body.dart';
 import 'package:go_plus/size_config.dart';
 
-class PurchasedTicket extends StatefulWidget {
+class PurchasedTicket extends StatelessWidget {
   static String routeName = "/purchased_ticket";
 
-  @override
-  _PurchasedTicketState createState() => _PurchasedTicketState();
-}
-
-class _PurchasedTicketState extends State<PurchasedTicket> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -17,7 +14,7 @@ class _PurchasedTicketState extends State<PurchasedTicket> {
       onWillPop: _onWillPop,
       child: Scaffold(
         appBar: buildAppBar(),
-        body: _body(),
+        body: PurchasedTicketBody(),
         bottomNavigationBar: BottomNavBar(),
       ),
     );
@@ -28,7 +25,17 @@ class _PurchasedTicketState extends State<PurchasedTicket> {
   }
 
   buildAppBar() {
+    return AppBar(
+      automaticallyImplyLeading: false,
+      centerTitle: true,
+      title: Image.asset(
+        "assets/images/Logo_3.png",
+        height: 35,
+      ),
+      actions: [
 
+      ],
+    );
   }
 
   Future<bool> _onWillPop() {

@@ -59,7 +59,7 @@ List<Event> events = [
     description: "Descrição do evento Funeral da Porca. Você nunca sabe o que esperar de uma arte performática. É tão original e única como o artista, com pouquíssimas coisas em comum entre um evento e outro, e que consegue alinhar sua apresentação artística com qualquer outro contexto, ao vivo e perante seu público-alvo.",
     date: DateTime(2021, 01, 31, 16, 00),
     local: "Parque de Exposições",
-    imageSrc: "assets/images/Funeral_da_Porca.jpg",
+    imageSrc: "assets/images/Funeral_da_Porca.png",
     city: "Itaúna",
     uf: "MG",
     country: "Brasil",

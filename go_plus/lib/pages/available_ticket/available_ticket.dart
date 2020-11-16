@@ -14,10 +14,10 @@ class AvailableTicket extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String evento = eventName;
+    String event = eventName;
     return Scaffold(
       appBar: AppBar(
-        title: Text(evento),
+        title: Text(event),
         actions: [
           IconButton(
             icon: SvgPicture.asset(

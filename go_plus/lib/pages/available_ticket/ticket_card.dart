@@ -6,6 +6,7 @@ import 'package:go_plus/components/default_button.dart';
 import 'package:go_plus/components/default_disable_short_button.dart';
 import 'package:go_plus/components/default_short_button.dart';
 import 'package:go_plus/constants.dart';
+import 'package:go_plus/entities/event.dart';
 import 'package:go_plus/entities/ticket.dart';
 import 'package:go_plus/pages/driver_information/driver_information.dart';
 import 'package:go_plus/pages/payment_successful/payment_successful.dart';
@@ -98,45 +99,7 @@ class TicketCard extends StatelessWidget {
                       ),
                       SizedBox(width: 15),
                       ticket.occupation < ticket.totalOccupation ?
-                        DefaultShortButton(
-                          text: "Comprar",
-                          press: () => {
-                            showDialog(
-                              context: context,
-                              builder: (BuildContext context) {
-                                return AlertDialog(
-                                  title: Text("Comprar"),
-                                  content: Text(
-                                    "Você deseja comprar o ticket \"" + ticket.name.trim() +
-                                    "\" por R\$ " + (ticket.price + (ticket.price * 0.10)).toString() + "0?"
-                                  ),
-                                  actions: [
-                                    RaisedButton(
-                                      child: Text("Sim",
-                                        style: TextStyle(
-                                            color: Colors.white),
-                                      ),
-                                      color: kPrimaryColor,
-                                      onPressed: (){
-                                        Navigator.pushNamedAndRemoveUntil(context, PaymentSuccessful.routeName, (_) => false);
-                                      },
-                                    ),
-                                    RaisedButton(
-                                      child: Text("Não",
-                                        style: TextStyle(
-                                            color: Colors.white),
-                                      ),
-                                      color: kPrimaryColor,
-                                      onPressed: (){
-                                        Navigator.pop(context, false);
-                                      },
-                                    )
-                                  ],
-                                );
-                              },
-                            ),
-                          },
-                        )
+                      _buyButton(context)
                       : DefaultDisableShortButton(text: "Comprar"),
                       SizedBox(width: 15),
                       DefaultShortButton(
@@ -144,7 +107,7 @@ class TicketCard extends StatelessWidget {
                         press: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => DriverInformation()),
+                            MaterialPageRoute(builder: (context) => DriverInformation(id: ticket.id-1))
                           );
                         },
                       ),
@@ -157,6 +120,48 @@ class TicketCard extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  DefaultShortButton _buyButton(BuildContext context) {
+    return DefaultShortButton(
+      text: "Comprar",
+      press: () => {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text("Comprar"),
+              content: Text(
+                "Você deseja comprar o ticket \"" + ticket.name.trim() +
+                "\" por R\$ " + (ticket.price + (ticket.price * 0.10)).toString() + "0?"
+              ),
+              actions: [
+                RaisedButton(
+                  child: Text("Sim",
+                    style: TextStyle(
+                        color: Colors.white),
+                  ),
+                  color: kPrimaryColor,
+                  onPressed: (){
+                    Navigator.pushNamedAndRemoveUntil(context, PaymentSuccessful.routeName, (_) => false);
+                  },
+                ),
+                RaisedButton(
+                  child: Text("Não",
+                    style: TextStyle(
+                        color: Colors.white),
+                  ),
+                  color: kPrimaryColor,
+                  onPressed: (){
+                    Navigator.pop(context, false);
+                  },
+                )
+              ],
+            );
+          },
+        ),
+      },
     );
   }
 }
