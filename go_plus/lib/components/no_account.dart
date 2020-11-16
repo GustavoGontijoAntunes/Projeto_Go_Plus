@@ -29,7 +29,7 @@ class NoAccount extends StatelessWidget {
             "Crie uma conta",
             style: TextStyle(
               fontSize: getProportionateScreenWidth(12),
-              color: primaryColor,
+              color: kPrimaryColor,
             ),
           ),
         ),

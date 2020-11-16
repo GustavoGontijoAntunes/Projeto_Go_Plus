@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "30008580647",
+    "firebase_url": "https://goplus-7fc8b.firebaseio.com",
+    "project_id": "goplus-7fc8b",
+    "storage_bucket": "goplus-7fc8b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:30008580647:android:0475c4906178b28c490c02",
+        "android_client_info": {
+          "package_name": "br.project.go_plus"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "30008580647-nh5upuqvo8dbgu3rtc44jhb1aq7v7vbk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.project.go_plus",
+            "certificate_hash": "32c9eb081d7466c25fad065c5c69e6377cfb1b12"
+          }
+        },
+        {
+          "client_id": "30008580647-cnnip9nat6efserjagafq59e13o5ooqn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZm48xbD42DkjJVk56YBWNlU31PPk0-RU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "30008580647-cnnip9nat6efserjagafq59e13o5ooqn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

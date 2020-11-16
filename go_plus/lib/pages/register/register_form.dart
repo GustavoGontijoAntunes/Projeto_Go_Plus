@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:go_plus/components/custom_suffix_icon.dart';
 import 'package:go_plus/components/default_button.dart';
 import 'package:go_plus/components/form_error.dart';
@@ -51,9 +52,11 @@ class _RegisterFormState extends State<RegisterForm> {
             text: "Continuar",
             press: (){
               if(_formKey.currentState.validate()){
-                Navigator.pushNamed(context, CompleteProfile.routeName);
+                //Navigator.pushNamed(context, CompleteProfile.routeName);
+                Navigator.push(context, MaterialPageRoute(builder: (context) => CompleteProfile(email, password)));
               }
             },
+            showProgress: false,
           ),
         ],
       ),
@@ -62,27 +65,32 @@ class _RegisterFormState extends State<RegisterForm> {
 
   TextFormField emailFormField() {
     return TextFormField(
+      inputFormatters: [
+        LengthLimitingTextInputFormatter(40),
+      ],
       keyboardType: TextInputType.emailAddress,
       onSaved: (newValue) {
         email = newValue;
       },
       onChanged: (value) {
         if (value.isNotEmpty) {
-          removeError(error: emailNullError);
-        } else if (emailValidatorRegExp.hasMatch(value)) {
-          removeError(error: invalidEmailError);
+          removeError(error: kEmailNullError);
+        } else if (kEmailValidatorRegExp.hasMatch(value)) {
+          removeError(error: kInvalidEmailError);
         }
 
         return null;
       },
       validator: (value) {
         if (value.isEmpty) {
-          addError(error: emailNullError);
+          addError(error: kEmailNullError);
           return "";
-        } else if (!emailValidatorRegExp.hasMatch(value)) {
-          addError(error: invalidEmailError);
+        } else if (!kEmailValidatorRegExp.hasMatch(value)) {
+          addError(error: kInvalidEmailError);
           return "";
         }
+
+        email = value;
 
         return null;
       },
@@ -97,16 +105,19 @@ class _RegisterFormState extends State<RegisterForm> {
 
   TextFormField passwordFormField() {
     return TextFormField(
+      inputFormatters: [
+        LengthLimitingTextInputFormatter(30),
+      ],
       obscureText: true,
       onSaved: (newValue) {
         password = newValue;
       },
       onChanged: (value) {
         if (value.isNotEmpty) {
-          removeError(error: passwordNullError);
+          removeError(error: kPasswordNullError);
         }
         else if (value.length >= 8) {
-          removeError(error: shortPasswordError);
+          removeError(error: kShortPasswordError);
           return "";
         }
 
@@ -116,11 +127,11 @@ class _RegisterFormState extends State<RegisterForm> {
       },
       validator: (value) {
         if (value.isEmpty) {
-          addError(error: passwordNullError);
+          addError(error: kPasswordNullError);
           return "";
         }
         else if (value.length < 8) {
-          addError(error: shortPasswordError);
+          addError(error: kShortPasswordError);
           return "";
         }
 
@@ -137,13 +148,16 @@ class _RegisterFormState extends State<RegisterForm> {
 
   TextFormField confirmPasswordFormField() {
     return TextFormField(
+      inputFormatters: [
+        LengthLimitingTextInputFormatter(30),
+      ],
       obscureText: true,
       onSaved: (newValue) {
         confirm_password = newValue;
       },
       onChanged: (value) {
         if (password == confirm_password) {
-          removeError(error: matchPasswordError);
+          removeError(error: kMatchPasswordError);
         }
         return null;
       },
@@ -152,7 +166,7 @@ class _RegisterFormState extends State<RegisterForm> {
           return "";
         }
         else if (password != value) {
-          addError(error: matchPasswordError);
+          addError(error: kMatchPasswordError);
           return "";
         }
 

@@ -5,6 +5,10 @@ import 'package:go_plus/size_config.dart';
 
 class CompleteProfile extends StatelessWidget {
   static String routeName = "/complete_profile";
+  String email;
+  String password;
+
+  CompleteProfile(this.email, this.password);
 
   @override
   Widget build(BuildContext context) {
@@ -28,14 +32,14 @@ class CompleteProfile extends StatelessWidget {
               SizedBox(height: SizeConfig.screenHeight * 0.00), // 0%
               Text(
                 "Complete seu perfil",
-                style: headinStyle,
+                style: kHeadingStyle,
               ),
               Text(
                 "Complete as informações ou continue \ncom uma rede social",
                 textAlign: TextAlign.center,
               ),
               SizedBox(height: SizeConfig.screenHeight * 0.02),
-              CompleteProfileForm(),
+              CompleteProfileForm(this.email, this.password),
               SizedBox(height: getProportionateScreenHeight(30)),
               Text(
                 "Ao continuar, você concorda com os \nnossos Termos e Condições",

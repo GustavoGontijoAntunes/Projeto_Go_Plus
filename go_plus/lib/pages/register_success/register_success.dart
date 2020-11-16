@@ -1,19 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:go_plus/components/default_button.dart';
+import 'package:go_plus/constants.dart';
 import 'package:go_plus/pages/login/login.dart';
 import 'package:go_plus/size_config.dart';
 
-class RegisterSuccess extends StatelessWidget {
+class RegisterSuccess extends StatefulWidget {
   static String routeName = "/register_success";
 
   @override
+  _RegisterSuccessState createState() => _RegisterSuccessState();
+}
+
+class _RegisterSuccessState extends State<RegisterSuccess> {
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: SizedBox(),
-        automaticallyImplyLeading: false,
+    return WillPopScope(
+      onWillPop: _onWillPop,
+      child: Scaffold(
+        appBar: AppBar(
+          leading: SizedBox(),
+          automaticallyImplyLeading: false,
+        ),
+        body: _body(context),
       ),
-      body: _body(context),
     );
   }
 
@@ -44,10 +53,44 @@ class RegisterSuccess extends StatelessWidget {
             press: (){
               Navigator.pushNamed(context, Login.routeName);
             },
+            showProgress: false,
           ),
         ),
         Spacer(),
       ],
+    );
+  }
+
+  Future<bool> _onWillPop() async{
+    return showDialog<bool>(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => AlertDialog(
+          title: Text("Sair"),
+          content: Text("Você deseja voltar para a tela de login?"),
+          actions: [
+            RaisedButton(
+              child: Text("Sim",
+                style: TextStyle(
+                    color: Colors.white),
+              ),
+              color: kPrimaryColor,
+              onPressed: (){
+                Navigator.pushNamed(context, Login.routeName);
+              },
+            ),
+            RaisedButton(
+              child: Text("Não",
+                style: TextStyle(
+                    color: Colors.white),
+              ),
+              color: kPrimaryColor,
+              onPressed: (){
+                Navigator.pop(context, false);
+              },
+            )
+          ],
+        )
     );
   }
 }

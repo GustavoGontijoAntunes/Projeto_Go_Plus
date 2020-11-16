@@ -1,26 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:go_plus/components/alert.dart';
 import 'package:go_plus/components/custom_suffix_icon.dart';
 import 'package:go_plus/components/default_button.dart';
 import 'package:go_plus/components/form_error.dart';
 import 'package:go_plus/constants.dart';
-import 'package:go_plus/pages/login/login.dart';
 import 'package:go_plus/pages/register_success/register_success.dart';
+import 'package:go_plus/services/register_api.dart';
+import 'file:///C:/Projetos_Flutter/go_plus/lib/entities/user.dart';
 import 'package:go_plus/size_config.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class CompleteProfileForm extends StatefulWidget {
+  String email;
+  String password;
+
+  CompleteProfileForm(this.email, this.password);
+
   @override
-  _CompleteProfileFormState createState() => _CompleteProfileFormState();
+  _CompleteProfileFormState createState() => _CompleteProfileFormState(this.email, this.password);
 }
 
 class _CompleteProfileFormState extends State<CompleteProfileForm> {
   final _formKey = GlobalKey<FormState>();
-  String firstName;
-  String lastName;
-  String phoneNumber;
-  String city;
+  User user = new User();
   final List<String> errors = [];
   var maskFormatter = new MaskTextInputFormatter(mask: '(##) #####-####', filter: { "#": RegExp(r'[0-9]') });
+  bool _showProgress = false;
+
+  _CompleteProfileFormState(String email, String password){
+    user.email = email;
+    user.password = password;
+  }
 
   void addError({String error}) {
     if (!errors.contains(error)) {
@@ -54,12 +65,9 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
           FormError(errors: errors),
           SizedBox(height: getProportionateScreenHeight(40)),
           DefaultButton(
-            text: "Continuar",
-            press: (){
-              if(_formKey.currentState.validate()){
-                Navigator.pushNamed(context, RegisterSuccess.routeName);
-              }
-            },
+            text: "Criar conta",
+            press: () => _onClickButton(context),
+            showProgress: _showProgress,
           ),
         ],
       ),
@@ -68,18 +76,21 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
 
   firstNameFormField() {
     return TextFormField(
+      inputFormatters: [
+        LengthLimitingTextInputFormatter(30),
+      ],
       onSaved: (newValue) {
-        firstName = newValue;
+        user.firstName = newValue;
       },
       onChanged: (value) {
         if (value.isNotEmpty) {
-          removeError(error: nameNullError);
+          removeError(error: kNameNullError);
         }
         return null;
       },
       validator: (value) {
         if (value.isEmpty) {
-          addError(error: nameNullError);
+          addError(error: kNameNullError);
           return "";
         }
         return null;
@@ -95,8 +106,11 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
 
   lastNameFormField() {
     return TextFormField(
+      inputFormatters: [
+        LengthLimitingTextInputFormatter(30),
+      ],
       onSaved: (newValue) {
-        lastName = newValue;
+        user.lastName = newValue;
       },
       decoration: InputDecoration(
         labelText: "Sobrenome",
@@ -112,17 +126,17 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
       keyboardType: TextInputType.phone,
       inputFormatters: [maskFormatter],
       onSaved: (newValue) {
-        phoneNumber = newValue;
+        user.phoneNumber = newValue;
       },
       onChanged: (value) {
         if (value.isNotEmpty) {
-          removeError(error: phoneNumberNullError);
+          removeError(error: kPhoneNumberNullError);
         }
         return null;
       },
       validator: (value) {
         if (value.isEmpty) {
-          addError(error: phoneNumberNullError);
+          addError(error: kPhoneNumberNullError);
           return "";
         }
         return null;
@@ -138,18 +152,21 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
 
   cityFormField() {
     return TextFormField(
+      inputFormatters: [
+        LengthLimitingTextInputFormatter(30),
+      ],
       onSaved: (newValue) {
-        city = newValue;
+        user.city = newValue;
       },
       onChanged: (value) {
         if (value.isNotEmpty) {
-          removeError(error: cityNullError);
+          removeError(error: kCityNullError);
         }
         return null;
       },
       validator: (value) {
         if (value.isEmpty) {
-          addError(error: cityNullError);
+          addError(error: kCityNullError);
           return "";
         }
         return null;
@@ -161,5 +178,28 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
         suffixIcon: CustomSuffixIcon(svgIcon: "assets/icons/Location point.svg"),
       ),
     );
+  }
+
+  Future _onClickButton(BuildContext context) async {
+    if (_formKey.currentState.validate()) {
+      _formKey.currentState.save();
+
+      setState(() {
+        _showProgress = true;
+      });
+
+      var registro = await RegisterApi.save(user);
+      print("registro: $registro");
+
+      if(registro) {
+        Navigator.pushNamed(context, RegisterSuccess.routeName);
+      } else{
+        alert(context, "Cadastro não pôde ser realizado!");
+      }
+
+      setState(() {
+        _showProgress = false;
+      });
+    }
   }
 }
