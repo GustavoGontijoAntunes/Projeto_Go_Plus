@@ -8,6 +8,7 @@ class UserTicket {
   String city;
   String uf;
   String country;
+  String qrCode;
 
   UserTicket({
     this.id,
@@ -19,6 +20,7 @@ class UserTicket {
     this.city,
     this.uf,
     this.country,
+    this.qrCode,
   });
 
   UserTicket.fromJson(Map<String, dynamic> json) {
@@ -31,6 +33,7 @@ class UserTicket {
     city = json['city'];
     uf = json['uf'];
     country = json['country'];
+    qrCode = json ['qrCode'];
   }
 
   Map<String, dynamic> toJson() {
@@ -44,6 +47,7 @@ class UserTicket {
     data['cidade'] = this.city;
     data['uf'] = this.uf;
     data['pais'] = this.country;
+    data['qrCode'] = this.qrCode;
     return data;
   }
 
@@ -63,5 +67,6 @@ List<UserTicket> userTicket = [
     city: "Divinópolis",
     uf: "MG",
     country: "Brasil",
+    qrCode: "VanDoCarlos1217",
   ),
 ];

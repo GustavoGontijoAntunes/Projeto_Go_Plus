@@ -8,6 +8,7 @@ import 'package:go_plus/pages/home/home.dart';
 import 'package:go_plus/pages/login/login.dart';
 import 'package:go_plus/pages/payment_successful/payment_successful.dart';
 import 'package:go_plus/pages/profile/profile.dart';
+import 'package:go_plus/pages/qr_code/qr_code.dart';
 import 'package:go_plus/pages/register/register.dart';
 import 'package:go_plus/pages/register_success/register_success.dart';
 import 'package:go_plus/pages/splash/splash.dart';
@@ -28,4 +29,5 @@ final Map<String, WidgetBuilder> routes = {
   EventDetails.routeName: (context) => EventDetails(),
   AvailableTicket.routeName: (context) => AvailableTicket(),
   DriverInformation.routeName: (context) => DriverInformation(),
+  QrCodePage.routeName: (context) => QrCodePage(),
 };

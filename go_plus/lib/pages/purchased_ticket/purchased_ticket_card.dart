@@ -13,7 +13,10 @@ import 'package:go_plus/entities/user_ticket.dart';
 import 'package:go_plus/entities/ticket.dart';
 import 'package:go_plus/pages/driver_information/driver_information.dart';
 import 'package:go_plus/pages/payment_successful/payment_successful.dart';
+import 'package:go_plus/pages/profile/profile.dart';
+import 'package:go_plus/pages/qr_code/qr_code.dart';
 import 'package:go_plus/size_config.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 
 class PurchasedTicketCard extends StatelessWidget {
   final UserTicket userTicket;
@@ -73,6 +76,26 @@ class PurchasedTicketCard extends StatelessWidget {
                         _dateEvent(),
                         SizedBox(height: 10),
                         _localEvent(),
+                        SizedBox(height: 10),
+                        GestureDetector(
+                          child: QrImage(
+                            data: userTicket.qrCode,
+                            version: QrVersions.auto,
+                            size: 60.0,
+                          ),
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => QrCodePage(qrCode: userTicket.qrCode)),
+                            );
+                          },
+                        ),
+                        Text(
+                          "Clique para expandir",
+                          style: TextStyle(
+                            fontSize: 6,
+                          ),
+                        ),
                       ],
                     ),
                   ),
