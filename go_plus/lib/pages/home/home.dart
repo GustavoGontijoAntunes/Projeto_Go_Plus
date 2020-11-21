@@ -44,9 +44,7 @@ class _HomeState extends State<Home> {
             "assets/icons/notification_2.svg",
             color: kPrimaryColor,
           ),
-          onPressed: () {
-            Navigator.pushNamed(context, PaymentSuccessful.routeName);
-          },
+          onPressed: () {},
         ),
         SizedBox(
           width: SizeConfig.defaultSize * 0.5,

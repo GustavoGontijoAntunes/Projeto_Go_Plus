@@ -54,7 +54,7 @@ class PurchasedTicketCard extends StatelessWidget {
                     Image.asset(
                       userTicket.imageSrc,
                       fit: BoxFit.cover,
-                      width: getProportionateScreenWidth(220),
+                      width: getProportionateScreenWidth(200),
                       height: getProportionateScreenHeight(274.5),
                     ),
                   ],
@@ -68,7 +68,7 @@ class PurchasedTicketCard extends StatelessWidget {
                           userTicket.ticketName,
                           style: TextStyle(
                             color: Colors.black,
-                            fontSize: 20,
+                            fontSize: 18,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -121,7 +121,7 @@ class PurchasedTicketCard extends StatelessWidget {
           Text(
             "${formatDate(userTicket.date, [dd, '/', mm, '/', yyyy, ' - ', HH, ':', nn])}",
             style: TextStyle(
-              fontSize: 12,
+              fontSize: 10,
             ),
           ),
         ],
@@ -145,7 +145,7 @@ class PurchasedTicketCard extends StatelessWidget {
             child: Text(
               userTicket.local + " - " + userTicket.city + " (" + userTicket.uf + ")",
               style: TextStyle(
-                fontSize: 12,
+                fontSize: 10,
               ),
             ),
           ),

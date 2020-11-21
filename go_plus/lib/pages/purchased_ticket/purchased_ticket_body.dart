@@ -30,6 +30,7 @@ class _PurchasedTicketBodyState extends State<PurchasedTicketBody> {
               ),
             ),
           ),
+          SizedBox(height: 10),
           Expanded(
             child: Padding(
               padding: EdgeInsets.symmetric(

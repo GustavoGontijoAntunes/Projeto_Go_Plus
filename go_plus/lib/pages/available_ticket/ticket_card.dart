@@ -46,7 +46,7 @@ class TicketCard extends StatelessWidget {
                           fontSize: defaultSize * 2.2,
                         )
                       ),
-                      SizedBox(width: 40),
+                      SizedBox(width: 25),
                       Text(
                         "Nota: ",
                         style: TextStyle(
@@ -67,16 +67,38 @@ class TicketCard extends StatelessWidget {
                       Text(" (" + ticket.grade.toString() + ")"),
                     ]
                   ),
-                  Divider(),
-                  Text("Horário: " + "${formatDate(ticket.exitDate, [HH, ':', nn])}"),
-                  Text("Data: " + "${formatDate(ticket.exitDate, [dd, '/', mm, '/', yyyy])}"),
+                  SizedBox(height: 10),
+                  Text(
+                    "Horário: " + "${formatDate(ticket.exitDate, [HH, ':', nn])}",
+                    style: TextStyle(
+                      fontSize: 13,
+                    ),
+                  ),
+                  Text(
+                    "Data: " + "${formatDate(ticket.exitDate, [dd, '/', mm, '/', yyyy])}",
+                    style: TextStyle(
+                      fontSize: 13,
+                    ),
+                  ),
                   Text("Local: " + ticket.exitLocation + " - " +
                       ticket.exitCity + " (" + ticket.exitUf + ")" +
-                      " - " + ticket.exitCountry
+                      " - " + ticket.exitCountry,
+                    style: TextStyle(
+                      fontSize: 13,
+                    ),
                   ),
-                  Text("Tipo: " + ticket.travelType),
+                  Text(
+                    "Tipo: " + ticket.travelType,
+                    style: TextStyle(
+                      fontSize: 13,
+                    ),
+                  ),
                   Text("Preço: R\$ " + ticket.price.toString() + "0" +
-                      " (+ R\$ " + (ticket.price * 0.10).toString() + "0)"),
+                      " (+ R\$ " + (ticket.price * 0.10).toString() + "0)",
+                    style: TextStyle(
+                      fontSize: 13,
+                    ),
+                  ),
                   Divider(),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,

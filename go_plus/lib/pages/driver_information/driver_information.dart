@@ -67,12 +67,13 @@ class _DriverInformationState extends State<DriverInformation> {
                       itemSize: 30.0,
                       direction: Axis.horizontal,
                     ),
-                    SizedBox(width: 15),
+                    SizedBox(width: 10),
                     InkWell(
                       child: Text(
                         "Visualizar Avaliações",
                         style: TextStyle(
-                          color: kPrimaryColor
+                          color: kPrimaryColor,
+                          fontSize: 10,
                         ),
                       ),
                       onTap: () {},
@@ -122,7 +123,7 @@ class _DriverInformationState extends State<DriverInformation> {
                             ),
                           ],
                         ),
-                        SizedBox(width: 20),
+                        SizedBox(width: 5),
                         Column(
                           children: [
                             _profile(),
@@ -259,7 +260,7 @@ class _DriverInformationState extends State<DriverInformation> {
 
   _cardStatistics(int parameter, String label) {
     return Container(
-      width: 120,
+      width: 100,
       height: 70,
       color: kPrimaryColor,
       child: Column(

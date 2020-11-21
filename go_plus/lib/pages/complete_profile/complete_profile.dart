@@ -28,8 +28,7 @@ class CompleteProfile extends StatelessWidget {
             EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
         child: SingleChildScrollView(
           child: Column(
-            children: [
-              SizedBox(height: SizeConfig.screenHeight * 0.00), // 0%
+            children: [ // 0%
               Text(
                 "Complete seu perfil",
                 style: kHeadingStyle,

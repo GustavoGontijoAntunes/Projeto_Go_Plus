@@ -106,7 +106,7 @@ List<Driver> drivers = [
     numberTrips: 6,
     numberMonthTrips: 5,
     numberKmTrips: 347,
-    driverName: "Júlio José dos Santos Corradi",
+    driverName: "Júlio José dos Santos",
     driverAge: 38,
     typeCNH: "C",
     phoneNumber: "(37) 99955-3248",

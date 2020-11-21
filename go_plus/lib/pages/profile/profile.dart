@@ -85,7 +85,7 @@ class _ProfileState extends State<Profile> {
           ),
           ProfileMenuItem(
             iconSrc: "assets/icons/premium.svg",
-            title: "Tornar-se Premium",
+            title: "Upgrade Premium",
             color: Colors.yellow,
             press: () {},
           ),
